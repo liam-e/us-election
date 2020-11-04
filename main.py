@@ -25,3 +25,5 @@ data = {
 
 with open("public_html/us-election/data.json", "w") as f:
 	json.dump(data, f, indent=4)
+
+driver.quit()
