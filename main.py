@@ -2,9 +2,11 @@ from selenium import webdriver
 import json
 from datetime import datetime
 
-op = webdriver.ChromeOptions()
-op.add_argument('headless')
-driver = webdriver.Chrome("/usr/local/bin/chromedriver", options=op)
+bin_location = "/usr/local/bin/chromedriver"
+options = webdriver.ChromeOptions()
+options.binary_location = bin_location
+options.add_argument('headless')
+driver = webdriver.Chrome(bin_location, options=options)
 
 driver.get("https://www.theguardian.com/us-news/ng-interactive/2020/nov/03/us-election-2020-live-results-donald-trump-joe-biden-who-won-presidential-republican-democrat")
 
