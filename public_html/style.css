@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Teko', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+#biden {
+    height: 100%;
+    width: var(--biden-width);
+    /*width 16*/
+    background: #25428f;
+}
+
+#line {
+    width: 0;
+    height: 100%;
+    border: 2px solid #111;
+}
+
+#trump {
+    height: 100%;
+    width: var(--trump-width);
+    background: #cc0a11;
+}
+
+#biden, #trump {
+    display: flex;
+        align-items:center;
+    justify-content:center;
+}
+
+span {
+    color: #eee;
+    font-size: 200%;
+}
