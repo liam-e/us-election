@@ -6,8 +6,13 @@ options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
+options.add_argument('--disable-gpu')
+options.add_argument('--remote-debugging-port=9222')
 
-driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", options=options)
+# driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", options=options)
+
+driver = webdriver.Chrome(options=options)
+
 
 driver.get("https://www.theguardian.com/us-news/ng-interactive/2020/nov/03/us-election-2020-live-results-donald-trump-joe-biden-who-won-presidential-republican-democrat")
 
@@ -28,5 +33,7 @@ data = {
 
 with open("public_html/us-election/data.json", "w") as f:
 	json.dump(data, f, indent=4)
+
+driver.close()
 
 driver.quit()
