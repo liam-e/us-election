@@ -13,26 +13,40 @@ options.add_argument('--remote-debugging-port=9222')
 
 driver = webdriver.Chrome(options=options)
 
-
 driver.get("https://www.theguardian.com/us-news/ng-interactive/2020/nov/03/us-election-2020-live-results-donald-trump-joe-biden-who-won-presidential-republican-democrat")
 
-biden_count = int(driver.find_element_by_xpath('/html/body/div[4]/article/div/div[2]/div/figure/figure/div/div/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[1]').text)
-trump_count = int(driver.find_element_by_xpath('/html/body/div[4]/article/div/div[2]/div/figure/figure/div/div/div[1]/div/div[1]/div[2]/div[2]/div[2]/div[2]').text)
+biden_xpath = '/html/body/div[4]/article/div/div[2]/div/figure/figure/div/div/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[1]'
+trump_xpath = '/html/body/div[4]/article/div/div[2]/div/figure/figure/div/div/div[1]/div/div[1]/div[2]/div[2]/div[2]/div[2]'
 
-data = {
-	"biden": {
-		"college_count": f"{biden_count}",
-		"width": f"{round(biden_count/270*50, 2)}%"
-	},
-	"trump": {
-		"college_count": f"{trump_count}",
-		"width": f"{round(trump_count/270*50, 2)}%"
-	},
-	"time_updated": datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-}
+trump_count = None
+biden_count = None
 
-with open("public_html/us-election/data.json", "w") as f:
-	json.dump(data, f, indent=4)
+try:
+	biden_count = int(driver.find_element_by_xpath(biden_xpath).text)
+except ValueError:
+	print(driver.find_element_by_xpath(biden_xpath).text)
+
+try:
+	trump_count = int(driver.find_element_by_xpath(trump_xpath).text)
+except ValueError:
+	print(driver.find_element_by_xpath(trump_xpath).text)
+
+if biden_count and trump_count:
+
+	data = {
+		"biden": {
+			"college_count": f"{biden_count}",
+			"width": f"{round(biden_count/270*50, 2)}%"
+		},
+		"trump": {
+			"college_count": f"{trump_count}",
+			"width": f"{round(trump_count/270*50, 2)}%"
+		},
+		"time_updated": datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+	}
+
+	with open("public_html/us-election/data.json", "w") as f:
+		json.dump(data, f, indent=4)
 
 driver.close()
 
