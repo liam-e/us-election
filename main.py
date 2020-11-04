@@ -2,9 +2,7 @@ from selenium import webdriver
 import json
 from datetime import datetime
 
-bin_location = "/usr/local/bin/chromedriver"
 options = webdriver.ChromeOptions()
-# options.binary_location = bin_location
 options.add_argument('headless')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
