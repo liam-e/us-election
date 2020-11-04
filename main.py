@@ -13,23 +13,24 @@ options.add_argument('--remote-debugging-port=9222')
 
 driver = webdriver.Chrome(options=options)
 
-driver.get("https://www.theguardian.com/us-news/ng-interactive/2020/nov/03/us-election-2020-live-results-donald-trump-joe-biden-who-won-presidential-republican-democrat")
+url = "https://www.google.com/search?q=us+election&oq=us+election&aqs=chrome.0.69i59l4j69i60l3.1961j0j1&sourceid=chrome&ie=UTF-8"
 
-biden_xpath = '/html/body/div[4]/article/div/div[2]/div/figure/figure/div/div/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[1]'
-trump_xpath = '/html/body/div[4]/article/div/div[2]/div/figure/figure/div/div/div[1]/div/div[1]/div[2]/div[2]/div[2]/div[2]'
+driver.get(url)
 
+biden_xpath = '/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div/div[4]/div/div[1]/div[1]/div/div[2]/span'
+trump_xpath = '/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div/div[4]/div/div[1]/div[3]/div/div[2]/span'
 trump_count = None
 biden_count = None
 
 try:
-	biden_count = int(driver.find_element_by_xpath(biden_xpath).text)
+	biden_count = int(driver.find_element_by_xpath(biden_xpath).text.strip())
 except ValueError:
-	print(driver.find_element_by_xpath(biden_xpath).text)
+	print(driver.find_element_by_xpath(biden_xpath).text.strip())
 
 try:
-	trump_count = int(driver.find_element_by_xpath(trump_xpath).text)
+	trump_count = int(driver.find_element_by_xpath(trump_xpath).text.strip())
 except ValueError:
-	print(driver.find_element_by_xpath(trump_xpath).text)
+	print(driver.find_element_by_xpath(trump_xpath).text.strip())
 
 if biden_count and trump_count:
 
