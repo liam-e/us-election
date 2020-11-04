@@ -4,7 +4,7 @@ from datetime import datetime
 
 op = webdriver.ChromeOptions()
 op.add_argument('headless')
-driver = webdriver.Chrome(options=op)
+driver = webdriver.Chrome("/usr/local/bin/chromedriver", options=op)
 
 driver.get("https://www.theguardian.com/us-news/ng-interactive/2020/nov/03/us-election-2020-live-results-donald-trump-joe-biden-who-won-presidential-republican-democrat")
 
