@@ -4,9 +4,12 @@ from datetime import datetime
 
 bin_location = "/usr/local/bin/chromedriver"
 options = webdriver.ChromeOptions()
-options.binary_location = bin_location
+# options.binary_location = bin_location
 options.add_argument('headless')
-driver = webdriver.Chrome(bin_location, options=options)
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
+
+driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", options=options)
 
 driver.get("https://www.theguardian.com/us-news/ng-interactive/2020/nov/03/us-election-2020-live-results-donald-trump-joe-biden-who-won-presidential-republican-democrat")
 
