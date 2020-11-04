@@ -4,7 +4,6 @@
 }
 
 body {
-    font-family: 'Teko', sans-serif;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -32,11 +31,25 @@ body {
 
 #biden, #trump {
     display: flex;
-        align-items:center;
+    align-items:center;
     justify-content:center;
 }
 
 span {
+    font-family: 'Teko', sans-serif;
     color: #eee;
-    font-size: 200%;
+    font-size: 3em;
+}
+
+#time-updated {
+    font-family: Verdana, Arial, sans-serif;
+    position: absolute;
+    left: 50%;
+    top: 95%;
+    width: 300px;
+    height: 20px;
+    margin-left: -150px;
+    margin-top: -10px;
+    text-align: center;
+    font-size: 0.75em;
 }

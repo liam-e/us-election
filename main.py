@@ -1,4 +1,6 @@
 from selenium import webdriver
+import json
+from datetime import datetime
 
 op = webdriver.ChromeOptions()
 op.add_argument('headless')
@@ -9,5 +11,17 @@ driver.get("https://www.theguardian.com/us-news/ng-interactive/2020/nov/03/us-el
 biden_count = int(driver.find_element_by_xpath('/html/body/div[4]/article/div/div[2]/div/figure/figure/div/div/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[1]').text)
 trump_count = int(driver.find_element_by_xpath('/html/body/div[4]/article/div/div[2]/div/figure/figure/div/div/div[1]/div/div[1]/div[2]/div[2]/div[2]/div[2]').text)
 
+data = {
+	"biden": {
+		"college_count": f"{biden_count}",
+		"width": f"{round(biden_count/270*50, 2)}%"
+	},
+	"trump": {
+		"college_count": f"{trump_count}",
+		"width": f"{round(trump_count/270*50, 2)}%"
+	},
+	"time_updated": datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+}
 
-print(round(biden_count/270*50, 2), round(trump_count/270*50, 2))
+with open("public_html/us-election/data.json", "w") as f:
+	json.dump(data, f, indent=4)
