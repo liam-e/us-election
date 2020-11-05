@@ -1,0 +1,5 @@
+INFO:root:Source directory = C:\dev\us-election
+INFO:root:Set up chromedriver for Windows OS
+INFO:root:Requesting HTTP from URL...
+INFO:root:Response status code 200
+INFO:root:Successful.
