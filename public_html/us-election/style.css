@@ -76,14 +76,6 @@ body {
     padding: 1em;
 }
 
-/*#battlegrounds div div {*/
-/*    height: 100%;*/
-/*    width: auto;*/
-/*    display: flex;*/
-/*    align-items:center;*/
-/*    justify-content:center;*/
-/*}*/
-
 .perc-container {
     display: flex;
     height: 100%;
@@ -108,4 +100,10 @@ body {
 
 .perc-label {
     font-size: 1.5em
+}
+
+@media only screen and (max-width: 720px) {
+    body {
+        font-size: 75%;
+    }
 }
