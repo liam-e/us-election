@@ -1,5 +1,5 @@
-INFO:root:Source directory = C:\dev\us-election
-INFO:root:Set up chromedriver for Windows OS
-INFO:root:Requesting HTTP from URL...
-INFO:root:Response status code 200
-INFO:root:Successful.
+05/11/2020 14:54:01 - root - INFO - Source directory = /var/www/us-election
+05/11/2020 14:54:03 - root - INFO - Set up chromedriver for Linux OS
+05/11/2020 14:54:03 - root - INFO - Requesting HTTP from URL...
+05/11/2020 14:54:03 - root - INFO - Response status code 200
+05/11/2020 14:54:16 - root - INFO - Successful.
