@@ -11,7 +11,6 @@ date_fmt = '%d/%m/%Y %H:%M:%S'
 
 
 def update_colleges():
-
 	log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 
 	logging.basicConfig(filename='main.log', filemode='w', format=log_fmt, datefmt=date_fmt, level=logging.INFO)
@@ -34,7 +33,7 @@ def update_colleges():
 
 	logging.info(f'Set up chromedriver for {platform.system()} OS')
 
-	url = "https://www.theguardian.com/us-news/ng-interactive/2020/nov/03/us-election-2020-live-results-donald-trump-joe-biden-who-won-presidential-republican-democrat"
+	url = "https://www.google.com/search?q=us+election&oq=us+election&aqs=chrome.0.69i59l4j69i60l3.1503j0j4&sourceid=chrome&ie=UTF-8"
 
 	logging.info(f'Requesting HTTP from URL...')
 
@@ -49,21 +48,29 @@ def update_colleges():
 
 	driver.get(url)
 
-	biden_xpath = '/html/body/div[4]/article/div/div[2]/div/figure/figure/div/div/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[1]'
-	trump_xpath = '/html/body/div[4]/article/div/div[2]/div/figure/figure/div/div/div[1]/div/div[1]/div[2]/div[2]/div[2]/div[2]'
+	biden_xpath = '/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div/div[6]/g-expandable-container/div/div/div[1]/table/tbody/tr[2]/td[2]/span'
+	trump_xpath = '/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div/div[6]/g-expandable-container/div/div/div[1]/table/tbody/tr[3]/td[2]/span'
 
-	biden_element = driver.find_element_by_xpath(biden_xpath)
-	trump_element = driver.find_element_by_xpath(trump_xpath)
+	try:
+		biden_element = driver.find_element_by_xpath(biden_xpath)
+		trump_element = driver.find_element_by_xpath(trump_xpath)
+	except:
+		print(f'Cannot retrieve element from webpage')
+		logging.error(f'Cannot retrieve element from webpage')
+		write_to_log_list(False)
+		return
 
 	if biden_element and trump_element:
 		try:
 			biden_count = int(biden_element.text.strip())
 			trump_count = int(trump_element.text.strip())
 		except ValueError:
+			print(f'Cannot retrieve data from webpage element')
 			logging.error(f'Cannot retrieve data from webpage element')
 			write_to_log_list(False)
 			return
 	else:
+		print(f'Cannot retrieve element from webpage')
 		logging.error(f'Cannot retrieve element from webpage')
 		write_to_log_list(False)
 		return
@@ -71,14 +78,87 @@ def update_colleges():
 	data = {
 		"biden": {
 			"college_count": f"{biden_count}",
-			"width": f"{round(biden_count/270*50, 2)}%"
+			"width": f"{round(biden_count / 270 * 50, 2)}%"
 		},
 		"trump": {
 			"college_count": f"{trump_count}",
-			"width": f"{round(trump_count/270*50, 2)}%"
+			"width": f"{round(trump_count / 270 * 50, 2)}%"
 		},
 		"time_updated": datetime.now().strftime(date_fmt)
 	}
+
+	for i, state_name in enumerate(['Georgia', 'Nevada', 'North Carolina', 'Pennsylvania', 'Arizona', 'Florida']):
+
+		row = i + 1
+
+		state_name_cell = driver.find_element_by_xpath(
+			f"/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[4]/div/div/g-accordion/div/g-expandable-container/div/div[{row}]/div/div[1]/span")
+
+		if state_name_cell and state_name_cell.text.strip() == state_name:
+			biden_perc = driver.find_element_by_xpath(
+				f"/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[4]/div/div/g-accordion/div/g-expandable-container/div/div[{row}]/div/div[2]/div[1]/span[1]")
+			trump_perc = driver.find_element_by_xpath(
+				f"/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[4]/div/div/g-accordion/div/g-expandable-container/div/div[{row}]/div/div[2]/div[2]/span[1]")
+
+			biden_votes = driver.find_element_by_xpath(
+				f"/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[4]/div/div/g-accordion/div/g-expandable-container/div/div[{row}]/div/div[2]/div[1]/span[2]")
+			trump_votes = driver.find_element_by_xpath(
+				f"/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[4]/div/div/g-accordion/div/g-expandable-container/div/div[{row}]/div/div[2]/div[2]/span[2]")
+
+			perc_counted = driver.find_element_by_xpath(
+				f"/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[4]/div/div/g-accordion/div/g-expandable-container/div/div[{row}]/div/div[1]/div/span[3]")
+			if biden_perc and trump_perc and biden_votes and trump_votes and perc_counted:
+				won = False
+				try:
+					biden_w = biden_perc.value_of_css_property("color")
+					trump_w = trump_perc.value_of_css_property("color")
+					if biden_w == "rgba(255, 255, 255, 1)" or trump_w == "rgba(255, 255, 255, 1)":
+						won = True
+				except:
+					pass
+
+				try:
+					biden_perc = float(biden_perc.text.strip().split("%")[0])
+					trump_perc = float(trump_perc.text.strip().split("%")[0])
+
+					biden_votes = int("".join(biden_votes.text.strip().split(",")))
+					trump_votes = int("".join(trump_votes.text.strip().split(",")))
+
+					perc_counted = int(perc_counted.text.strip().split("%")[0])
+
+					if biden_votes > trump_votes:
+						leaning = "Biden"
+					else:
+						leaning = "Trump"
+
+					state_d = {
+						"name": state_name,
+						"biden_perc": biden_perc,
+						"trump_perc": trump_perc,
+						"biden_votes": biden_votes,
+						"trump_votes": trump_votes,
+						"perc_counted": perc_counted,
+						"won": won,
+						"leaning": leaning,
+					}
+
+					data["-".join(state_name.lower().split(" "))] = state_d
+				except ValueError:
+					print(f'Cannot retrieve state data from webpage - format error')
+					logging.error(f'Cannot retrieve state data from webpage - format error')
+					write_to_log_list(False)
+					return
+			else:
+				print(f'Cannot retrieve state element from webpage')
+				logging.error(f'Cannot retrieve state element from webpage')
+				write_to_log_list(False)
+				return
+
+		else:
+			print(f'Cannot retrieve state element from webpage - wrong state name')
+			logging.error(f'Cannot retrieve state element from webpage')
+			write_to_log_list(False)
+			return
 
 	with open(f"{source_dir}/public_html/us-election/data.json", "w") as f:
 		json.dump(data, f, indent=4)

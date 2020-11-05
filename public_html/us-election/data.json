@@ -7,5 +7,65 @@
         "college_count": "214",
         "width": "39.63%"
     },
-    "time_updated": "05/11/2020 14:54:16"
+    "time_updated": "05/11/2020 21:03:59",
+    "georgia": {
+        "name": "Georgia",
+        "biden_perc": 49.2,
+        "trump_perc": 49.6,
+        "biden_votes": 2407589,
+        "trump_votes": 2430156,
+        "perc_counted": 98,
+        "won": false,
+        "leaning": "Trump"
+    },
+    "nevada": {
+        "name": "Nevada",
+        "biden_perc": 49.3,
+        "trump_perc": 48.7,
+        "biden_votes": 588252,
+        "trump_votes": 580605,
+        "perc_counted": 75,
+        "won": false,
+        "leaning": "Biden"
+    },
+    "north-carolina": {
+        "name": "North Carolina",
+        "biden_perc": 48.7,
+        "trump_perc": 50.1,
+        "biden_votes": 2655383,
+        "trump_votes": 2732084,
+        "perc_counted": 94,
+        "won": false,
+        "leaning": "Trump"
+    },
+    "pennsylvania": {
+        "name": "Pennsylvania",
+        "biden_perc": 48.1,
+        "trump_perc": 50.7,
+        "biden_votes": 3051565,
+        "trump_votes": 3215983,
+        "perc_counted": 89,
+        "won": false,
+        "leaning": "Trump"
+    },
+    "arizona": {
+        "name": "Arizona",
+        "biden_perc": 50.5,
+        "trump_perc": 48.1,
+        "biden_votes": 1469341,
+        "trump_votes": 1400951,
+        "perc_counted": 88,
+        "won": true,
+        "leaning": "Biden"
+    },
+    "florida": {
+        "name": "Florida",
+        "biden_perc": 47.8,
+        "trump_perc": 51.2,
+        "biden_votes": 5283904,
+        "trump_votes": 5658404,
+        "perc_counted": 99,
+        "won": true,
+        "leaning": "Trump"
+    }
 }
