@@ -35,7 +35,7 @@ def update_colleges():
 
 	url_1 = "https://www.theguardian.com/us-news/ng-interactive/2020/nov/03/us-election-2020-live-results-donald-trump-joe-biden-who-won-presidential-republican-democrat"
 
-	url_2 = "https://www.google.com/search?q=us+election&oq=us+election&aqs=chrome.0.69i59l4j69i60l3.1503j0j4&sourceid=chrome&ie=UTF-8"
+	url_2 = "https://www.google.com/search?q=us+election"
 
 	logging.info(f'Requesting HTTP from URL...')
 
@@ -117,8 +117,15 @@ def update_colleges():
 
 		row = i + 1
 
-		state_name_cell = driver.find_element_by_xpath(
-			f"/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[4]/div/div/g-accordion/div/g-expandable-container/div/div[{row}]/div/div[1]/span")
+		try:
+
+			state_name_cell = driver.find_element_by_xpath(
+				f"/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[4]/div/div/g-accordion/div/g-expandable-container/div/div[{row}]/div/div[1]/span")
+		except:
+			print(f'Cannot retrieve state name cell for {state_name}')
+			logging.error(f'Cannot retrieve state name cell for {state_name}')
+			write_to_log_list(False)
+			return
 
 		if state_name_cell and state_name_cell.text.strip() == state_name:
 

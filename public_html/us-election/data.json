@@ -1,15 +1,15 @@
 {
     "biden": {
         "college_count": "264",
-        "total_votes": 72110951,
+        "total_votes": 72130179,
         "width": "48.89%"
     },
     "trump": {
         "college_count": "214",
-        "total_votes": 68643544,
+        "total_votes": 68648006,
         "width": "39.63%"
     },
-    "time_updated": "06/11/2020 00:02:58",
+    "time_updated": "06/11/2020 00:22:43",
     "georgia": {
         "name": "Georgia",
         "college_votes": 16,
