@@ -67,13 +67,19 @@ def update_colleges():
 		except ValueError:
 			print(f'Cannot retrieve data from webpage element')
 			logging.error(f'Cannot retrieve data from webpage element')
-			write_to_log_list(False)
-			return
+
+			with open(f"{source_dir}/public_html/us-election/data.json", "r") as f:
+				old_data = json.load(f)
+			biden_count = old_data["biden"]["college_count"]
+			trump_count = old_data["trump"]["college_count"]
 	else:
 		print(f'Cannot retrieve element from webpage')
 		logging.error(f'Cannot retrieve element from webpage')
-		write_to_log_list(False)
-		return
+		with open(f"{source_dir}/public_html/us-election/data.json", "r") as f:
+			old_data = json.load(f)
+
+		biden_count = old_data["biden"]["college_count"]
+		trump_count = old_data["trump"]["college_count"]
 
 	data = {
 		"biden": {
