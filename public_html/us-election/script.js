@@ -54,9 +54,12 @@ $.getJSON( "data.json", function( data ) {
     let biden_div = "<div class='perc' style='background-color:" + biden_background_color + "'>" + "<span class='perc-label' style='color:" + biden_text_color + "'>" + state_obj.biden_perc + "%</span>" + "</div>"
     let trump_div = "<div class='perc' style='background-color:" + trump_background_color + "'>" + "<span class='perc-label' style='color:" + trump_text_color + "'>" + state_obj.trump_perc + "%</span>" + "</div>"
 
-    let state_label = "<span class='state-label'>" + state_obj.name + " - " + state_obj.perc_counted + "% counted " + vote_diff + "</span>";
+    let state_label = "<span class='state-label'>" + state_obj.name + "</span>";
 
-    document.getElementById(state).innerHTML = state_label + "<div class='perc-container'>" + biden_div + trump_div + "</div>";
+    let colleges_label = "<span class='colleges-label'>" + state_obj.college_votes + " college votes</span>"
+    let counted_label = "<span class='counted-label'>" + state_obj.perc_counted + "% counted " + vote_diff + "</span>"
+
+    document.getElementById(state).innerHTML = state_label + colleges_label + counted_label + "<div class='perc-container'>" + biden_div + trump_div + "</div>";
   })
 
 });

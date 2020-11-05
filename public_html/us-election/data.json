@@ -7,9 +7,10 @@
         "college_count": "214",
         "width": "39.63%"
     },
-    "time_updated": "05/11/2020 22:11:31",
+    "time_updated": "05/11/2020 22:40:15",
     "georgia": {
         "name": "Georgia",
+        "college_votes": 16,
         "biden_perc": 49.2,
         "trump_perc": 49.6,
         "biden_votes": 2407589,
@@ -20,6 +21,7 @@
     },
     "nevada": {
         "name": "Nevada",
+        "college_votes": 6,
         "biden_perc": 49.3,
         "trump_perc": 48.7,
         "biden_votes": 588252,
@@ -30,6 +32,7 @@
     },
     "north-carolina": {
         "name": "North Carolina",
+        "college_votes": 15,
         "biden_perc": 48.7,
         "trump_perc": 50.1,
         "biden_votes": 2655383,
@@ -40,6 +43,7 @@
     },
     "pennsylvania": {
         "name": "Pennsylvania",
+        "college_votes": 20,
         "biden_perc": 48.1,
         "trump_perc": 50.7,
         "biden_votes": 3051565,
@@ -50,6 +54,7 @@
     },
     "arizona": {
         "name": "Arizona",
+        "college_votes": 11,
         "biden_perc": 50.5,
         "trump_perc": 48.1,
         "biden_votes": 1469341,
@@ -60,6 +65,7 @@
     },
     "florida": {
         "name": "Florida",
+        "college_votes": 29,
         "biden_perc": 47.8,
         "trump_perc": 51.2,
         "biden_votes": 5283904,

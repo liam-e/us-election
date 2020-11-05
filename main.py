@@ -48,8 +48,8 @@ def update_colleges():
 
 	driver.get(url)
 
-	biden_xpath = '/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div/div[6]/g-expandable-container/div/div/div[1]/table/tbody/tr[2]/td[2]/span'
-	trump_xpath = '/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div/div[6]/g-expandable-container/div/div/div[1]/table/tbody/tr[3]/td[2]/span'
+	biden_xpath = '/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div/div[4]/div/div[1]/div[1]/div/div[2]/span'
+	trump_xpath = '/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div/div[4]/div/div[1]/div[3]/div/div[2]/span'
 
 	try:
 		biden_element = driver.find_element_by_xpath(biden_xpath)
@@ -95,6 +95,10 @@ def update_colleges():
 			f"/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[4]/div/div/g-accordion/div/g-expandable-container/div/div[{row}]/div/div[1]/span")
 
 		if state_name_cell and state_name_cell.text.strip() == state_name:
+
+			college_votes = driver.find_element_by_xpath(
+				f"/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[4]/div/div/g-accordion/div/g-expandable-container/div/div[{row}]/div/div[1]/div/span[1]")
+
 			biden_perc = driver.find_element_by_xpath(
 				f"/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[4]/div/div/g-accordion/div/g-expandable-container/div/div[{row}]/div/div[2]/div[1]/span[1]")
 			trump_perc = driver.find_element_by_xpath(
@@ -107,6 +111,7 @@ def update_colleges():
 
 			perc_counted = driver.find_element_by_xpath(
 				f"/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[4]/div/div/g-accordion/div/g-expandable-container/div/div[{row}]/div/div[1]/div/span[3]")
+
 			if biden_perc and trump_perc and biden_votes and trump_votes and perc_counted:
 				won = False
 				try:
@@ -118,6 +123,8 @@ def update_colleges():
 					pass
 
 				try:
+					college_votes = int(college_votes.text.strip().split(" ")[0])
+
 					biden_perc = float(biden_perc.text.strip().split("%")[0])
 					trump_perc = float(trump_perc.text.strip().split("%")[0])
 
@@ -133,6 +140,7 @@ def update_colleges():
 
 					state_d = {
 						"name": state_name,
+						"college_votes": college_votes,
 						"biden_perc": biden_perc,
 						"trump_perc": trump_perc,
 						"biden_votes": biden_votes,
@@ -155,8 +163,8 @@ def update_colleges():
 				return
 
 		else:
-			print(f'Cannot retrieve state element from webpage - wrong state name')
-			logging.error(f'Cannot retrieve state element from webpage')
+			print(f'Cannot retrieve state element from webpage - wrong state name - should be {state_name}')
+			logging.error(f'Cannot retrieve state element from webpage - wrong state name - should be {state_name}')
 			write_to_log_list(False)
 			return
 
