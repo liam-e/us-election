@@ -1,8 +1,17 @@
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 $.getJSON( "data.json", function( data ) {
-  document.getElementById("biden-count").innerText = data.biden.college_count;
-  document.getElementById("trump-count").innerText = data.trump.college_count;
-  document.getElementById("biden").setAttribute("style", "--biden-width: " + data.biden.width);
-  document.getElementById("trump").setAttribute("style", "--trump-width: " + data.trump.width);
+
+  ["biden", "trump"].forEach((candidate) => {
+    let candidate_data = data[candidate];
+    let total_colleges = "<span class='total-colleges'>" + candidate_data.college_count + "</span>";
+    let total_votes = "<span class='total-votes'>" + numberWithCommas(candidate_data.total_votes) + " votes</span>";
+    document.getElementById(candidate).innerHTML = "<div class='totals'>" + total_colleges + total_votes + "</div>";
+    document.getElementById(candidate).setAttribute("style", "--" + candidate + "-width: " + candidate_data.width);
+  });
+
   document.getElementById("time-updated").innerText = "Time updated: " + data.time_updated;
 
   let states = ["georgia","nevada","north-carolina","pennsylvania","arizona","florida"];
@@ -46,9 +55,9 @@ $.getJSON( "data.json", function( data ) {
     let vote_diff = "";
 
     if (state_obj.leaning === "Biden"){
-      vote_diff = "<span style='color:#25428f;font-weight:bold;'>+" + (state_obj.biden_votes - state_obj.trump_votes) + " votes </span>";
+      vote_diff = "<span style='color:#25428f;font-weight:bold;margin-left:0.5em;'>+" + numberWithCommas(state_obj.biden_votes - state_obj.trump_votes) + " votes </span>";
     } else {
-      vote_diff = "<span style='color:#cc0a11;font-weight:bold;'>+" + (state_obj.trump_votes - state_obj.biden_votes) + " votes </span>";
+      vote_diff = "<span style='color:#cc0a11;font-weight:bold;margin-left:0.5em;'>+" + numberWithCommas(state_obj.trump_votes - state_obj.biden_votes) + " votes </span>";
     }
 
     let biden_div = "<div class='perc' style='background-color:" + biden_background_color + "'>" + "<span class='perc-label' style='color:" + biden_text_color + "'>" + state_obj.biden_perc + "%</span>" + "</div>"

@@ -14,10 +14,15 @@ span {
     text-align: center;
 }
 
+#container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+}
+
 #colleges {
     padding: 2em;
-    width: 100%;
-    height: 50%;
     display: flex;
     justify-content: space-between;
 }
@@ -28,35 +33,38 @@ span {
     background: #25428f;
 }
 
-#line {
-    width: 0;
-    height: 100%;
-    border: 2px solid #111;
-}
-
 #trump {
     height: 100%;
     width: var(--trump-width);
     background: #cc0a11;
 }
 
-#biden, #trump {
+.candidate {
     display: flex;
     align-items:center;
     justify-content:center;
 }
 
-#biden span, #trump span {
-    color: #eee;
-    font-size: 3em;
+.totals {
+    display: grid;
+}
+
+.total-colleges {
+    color: #fff;
+    font-size: 3.5em;
     font-weight: bold;
+}
+
+.total-votes {
+    color: #fff;
+    font-size: 1.5em;
 }
 
 #time-updated {
     font-family: Verdana, Arial, sans-serif;
     position: absolute;
     left: 50%;
-    top: 2%;
+    top: 5%;
     width: 250px;
     height: 20px;
     margin-left: -125px;
@@ -66,8 +74,6 @@ span {
 }
 
 #battlegrounds {
-    width: 100%;
-    height: 50%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -99,7 +105,7 @@ span {
 }
 
 .state-label {
-    font-size: 1.75em;
+    font-size: 2em;
     font-weight: bold;
 }
 
@@ -112,7 +118,7 @@ span {
 }
 
 .perc-label {
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: bold;
 }
 
