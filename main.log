@@ -1,7 +1,7 @@
-06/11/2020 14:33:09 - root - INFO - Source directory = C:\dev\us-election
-06/11/2020 14:33:12 - root - INFO - Set up chromedriver for Windows OS
-06/11/2020 14:33:12 - root - INFO - Requesting HTTP from URL...
-06/11/2020 14:33:12 - root - INFO - Response status code 200
-06/11/2020 14:33:19 - root - INFO - Requesting HTTP from URL...
-06/11/2020 14:33:21 - root - INFO - Response status code 200
-06/11/2020 14:33:27 - root - INFO - Successful.
+06/11/2020 22:01:50 - root - INFO - Source directory = C:\dev\us-election
+06/11/2020 22:01:53 - root - INFO - Set up chromedriver for Windows OS
+06/11/2020 22:01:53 - root - INFO - Requesting HTTP from URL...
+06/11/2020 22:01:54 - root - INFO - Response status code 200
+06/11/2020 22:01:59 - root - INFO - Requesting HTTP from URL...
+06/11/2020 22:02:01 - root - INFO - Response status code 200
+06/11/2020 22:02:07 - root - INFO - Successful.
