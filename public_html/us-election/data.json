@@ -1,34 +1,34 @@
 {
     "biden": {
         "college_count": "264",
-        "total_votes": 73486646,
+        "total_votes": 74811378,
         "width": "48.89%"
     },
     "trump": {
         "college_count": "214",
-        "total_votes": 69622185,
+        "total_votes": 70554537,
         "width": "39.63%"
     },
-    "time_updated": "06/11/2020 22:01:59",
+    "time_updated": "07/11/2020 19:01:08",
     "georgia": {
         "name": "Georgia",
         "college_votes": 16,
         "biden_perc": 49.4,
-        "trump_perc": 49.4,
-        "biden_votes": 2447769,
-        "trump_votes": 2448232,
+        "trump_perc": 49.3,
+        "biden_votes": 2456845,
+        "trump_votes": 2452825,
         "perc_counted": 99,
         "won": false,
-        "leaning": "Trump"
+        "leaning": "Biden"
     },
     "nevada": {
         "name": "Nevada",
         "college_votes": 6,
-        "biden_perc": 49.4,
-        "trump_perc": 48.5,
-        "biden_votes": 604251,
-        "trump_votes": 592813,
-        "perc_counted": 84,
+        "biden_perc": 49.8,
+        "trump_perc": 48.0,
+        "biden_votes": 632558,
+        "trump_votes": 609901,
+        "perc_counted": 87,
         "won": false,
         "leaning": "Biden"
     },
@@ -37,30 +37,30 @@
         "college_votes": 15,
         "biden_perc": 48.7,
         "trump_perc": 50.1,
-        "biden_votes": 2655383,
-        "trump_votes": 2732084,
-        "perc_counted": 94,
+        "biden_votes": 2656303,
+        "trump_votes": 2732782,
+        "perc_counted": 99,
         "won": false,
         "leaning": "Trump"
     },
     "pennsylvania": {
         "name": "Pennsylvania",
         "college_votes": 20,
-        "biden_perc": 49.3,
-        "trump_perc": 49.6,
-        "biden_votes": 3267923,
-        "trump_votes": 3285965,
-        "perc_counted": 97,
+        "biden_perc": 49.6,
+        "trump_perc": 49.2,
+        "biden_votes": 3337069,
+        "trump_votes": 3308192,
+        "perc_counted": 99,
         "won": false,
-        "leaning": "Trump"
+        "leaning": "Biden"
     },
     "arizona": {
         "name": "Arizona",
         "college_votes": 11,
-        "biden_perc": 50.1,
-        "trump_perc": 48.5,
-        "biden_votes": 1528319,
-        "trump_votes": 1482062,
+        "biden_perc": 49.7,
+        "trump_perc": 48.8,
+        "biden_votes": 1604067,
+        "trump_votes": 1574206,
         "perc_counted": 90,
         "won": true,
         "leaning": "Biden"
@@ -70,8 +70,8 @@
         "college_votes": 29,
         "biden_perc": 47.9,
         "trump_perc": 51.2,
-        "biden_votes": 5284377,
-        "trump_votes": 5658690,
+        "biden_votes": 5284453,
+        "trump_votes": 5658847,
         "perc_counted": 99,
         "won": true,
         "leaning": "Trump"
